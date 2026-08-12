@@ -8,3 +8,10 @@ An interactive pathfinding visualizer for exploring how search algorithms naviga
 - Breadth-first search, depth-first search, Dijkstra, and A* search
 - Walls, weighted cells, and adjustable animation speed
 - Random grid and maze generation
+
+## Development
+
+```bash
+npm install
+npm run dev
+```
