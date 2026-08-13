@@ -19,6 +19,11 @@ body {
   background: #f7f8fa;
 }
 
+button,
+select {
+  font: inherit;
+}
+
 .app-shell {
   width: min(1180px, calc(100% - 32px));
   margin: 0 auto;
@@ -42,6 +47,122 @@ h1 {
   margin: 0;
   font-size: 3.4rem;
   line-height: 1;
+}
+
+.toolbar {
+  display: flex;
+  align-items: end;
+  gap: 14px;
+  margin-top: 24px;
+  padding: 14px;
+  border: 1px solid #d8e0ea;
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.toolbar-field {
+  display: grid;
+  gap: 6px;
+  color: #596579;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+select,
+button {
+  min-height: 40px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  color: #17202a;
+  background: #ffffff;
+}
+
+select {
+  padding: 0 36px 0 12px;
+}
+
+button {
+  padding: 0 16px;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.58;
+}
+
+.toolbar-actions {
+  display: flex;
+  gap: 8px;
+  margin-left: auto;
+}
+
+.primary-button {
+  border-color: #2364aa;
+  color: #ffffff;
+  background: #2364aa;
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 20px;
+  padding-top: 24px;
+  color: #596579;
+  font-size: 0.88rem;
+}
+
+.legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.legend-swatch {
+  width: 16px;
+  height: 16px;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+}
+
+.legend-start {
+  background: #2f9e44;
+}
+
+.legend-target {
+  background: #d64545;
+}
+
+.legend-wall {
+  background: #293241;
+}
+
+.legend-weight {
+  background: #f4a261;
+}
+
+.legend-visited {
+  background: #8ecae6;
+}
+
+.legend-path {
+  background: #ffd166;
+}
+
+@media (max-width: 760px) {
+  .toolbar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .toolbar-actions {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .toolbar-actions button {
+    flex: 1;
+  }
 }
 
 @media (max-width: 520px) {
