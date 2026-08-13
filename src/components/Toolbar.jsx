@@ -1,0 +1,33 @@
+export default function Toolbar() {
+  return (
+    <section className="toolbar" aria-label="Visualizer controls">
+      <label className="toolbar-field">
+        <span>Algorithm</span>
+        <select defaultValue="bfs" aria-label="Select algorithm">
+          <option value="bfs">Breadth-first search</option>
+          <option value="dfs">Depth-first search</option>
+          <option value="dijkstra">Dijkstra</option>
+          <option value="astar">A* search</option>
+        </select>
+      </label>
+
+      <label className="toolbar-field">
+        <span>Speed</span>
+        <select defaultValue="normal" aria-label="Select animation speed">
+          <option value="slow">Slow</option>
+          <option value="normal">Normal</option>
+          <option value="fast">Fast</option>
+        </select>
+      </label>
+
+      <div className="toolbar-actions" aria-label="Grid actions">
+        <button type="button" className="primary-button" disabled>
+          Run
+        </button>
+        <button type="button" disabled>
+          Clear
+        </button>
+      </div>
+    </section>
+  )
+}
