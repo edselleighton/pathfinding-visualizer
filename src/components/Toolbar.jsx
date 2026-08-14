@@ -8,6 +8,7 @@ export default function Toolbar() {
           <option value="dfs">Depth-first search</option>
           <option value="dijkstra">Dijkstra</option>
           <option value="astar">A* search</option>
+          <option value="greedy">Greedy best-first search</option>
         </select>
       </label>
 

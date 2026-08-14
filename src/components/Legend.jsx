@@ -13,7 +13,7 @@ export default function Legend() {
       {legendItems.map(([type, label]) => (
         <div className="legend-item" key={type}>
           <span
-            className={`legend-swatch legend-${type}`}
+            className={`legend-swatch cell-${type}`}
             aria-hidden="true"
           />
           <span>{label}</span>
