@@ -1,6 +1,22 @@
 :root {
-  color: #17202a;
-  background: #f7f8fa;
+  color-scheme: light;
+  --page-background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.78), rgba(245, 247, 251, 0.92)),
+    #f5f7fb;
+  --surface: #ffffff;
+  --surface-muted: #edf2f7;
+  --text: #17202a;
+  --muted-text: #596579;
+  --border: #d8e0ea;
+  --control-border: #cbd5e1;
+  --control-hover: #72839a;
+  --accent: #2a7672;
+  --primary: #2364aa;
+  --primary-hover: #194f89;
+  --on-primary: #ffffff;
+  --panel-shadow: rgba(23, 32, 42, 0.08);
+  color: var(--text);
+  background: var(--page-background);
   font-family:
     Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
     sans-serif;
@@ -16,7 +32,8 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
-  background: #f7f8fa;
+  color: var(--text);
+  background: var(--page-background);
 }
 
 button,
@@ -24,71 +41,93 @@ select {
   font: inherit;
 }
 
+button {
+  min-height: 40px;
+  border: 1px solid var(--control-border);
+  border-radius: 8px;
+  padding: 0 14px;
+  color: var(--text);
+  background: var(--surface);
+  cursor: pointer;
+}
+
+button:hover {
+  border-color: var(--control-hover);
+}
+
+select {
+  min-height: 40px;
+  border: 1px solid var(--control-border);
+  border-radius: 8px;
+  padding: 0 36px 0 12px;
+  color: var(--text);
+  background: var(--surface);
+}
+
 .app-shell {
   width: min(1180px, calc(100% - 32px));
   margin: 0 auto;
-  padding: 48px 0;
+  padding: 32px 0;
 }
 
 .app-header {
-  padding-bottom: 24px;
-  border-bottom: 1px solid #d8e0ea;
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 20px;
 }
 
 .eyebrow {
   margin: 0 0 6px;
-  color: #2f6f6c;
+  color: var(--accent);
   font-size: 0.78rem;
   font-weight: 700;
   text-transform: uppercase;
 }
 
+h1,
+h2,
+p {
+  margin-top: 0;
+}
+
 h1 {
-  margin: 0;
-  font-size: 3.4rem;
+  margin-bottom: 0;
+  font-size: clamp(2rem, 4vw, 3.8rem);
   line-height: 1;
+}
+
+h2 {
+  margin-bottom: 16px;
+  font-size: 1.05rem;
+}
+
+.header-copy {
+  max-width: 420px;
+  margin-bottom: 4px;
+  color: var(--muted-text);
+  line-height: 1.55;
 }
 
 .toolbar {
   display: flex;
   align-items: end;
   gap: 14px;
-  margin-top: 24px;
+  margin-bottom: 16px;
   padding: 14px;
-  border: 1px solid #d8e0ea;
+  border: 1px solid var(--border);
   border-radius: 8px;
-  background: #ffffff;
+  background: var(--surface);
 }
 
-.toolbar-field {
+.toolbar label {
   display: grid;
   gap: 6px;
-  color: #596579;
+  color: var(--muted-text);
   font-size: 0.78rem;
   font-weight: 700;
   text-transform: uppercase;
-}
-
-select,
-button {
-  min-height: 40px;
-  border: 1px solid #cbd5e1;
-  border-radius: 8px;
-  color: #17202a;
-  background: #ffffff;
-}
-
-select {
-  padding: 0 36px 0 12px;
-}
-
-button {
-  padding: 0 16px;
-}
-
-button:disabled {
-  cursor: not-allowed;
-  opacity: 0.58;
 }
 
 .toolbar-actions {
@@ -98,17 +137,84 @@ button:disabled {
 }
 
 .primary-button {
-  border-color: #2364aa;
-  color: #ffffff;
-  background: #2364aa;
+  border-color: var(--primary);
+  color: var(--on-primary);
+  background: var(--primary);
+}
+
+.primary-button:hover {
+  border-color: var(--primary-hover);
+  background: var(--primary-hover);
+}
+
+.workspace {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 260px;
+  gap: 16px;
+  align-items: start;
+}
+
+.visualizer,
+.stats-panel {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  box-shadow: 0 16px 40px var(--panel-shadow);
+}
+
+.grid-panel {
+  overflow-x: auto;
+  padding: 18px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(25, 28px);
+  grid-template-rows: repeat(15, 28px);
+  width: max-content;
+  border-top: 1px solid var(--border);
+  border-left: 1px solid var(--border);
+  background: var(--surface-muted);
+}
+
+.grid-cell {
+  width: 28px;
+  height: 28px;
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.cell-start {
+  background: #2f9e44;
+}
+
+.cell-target {
+  background: #d64545;
+}
+
+.cell-wall {
+  background: #293241;
+}
+
+.cell-weight {
+  background: #f4a261;
+}
+
+.cell-visited {
+  background: #8ecae6;
+}
+
+.cell-path {
+  background: #ffd166;
 }
 
 .legend {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px 20px;
-  padding-top: 24px;
-  color: #596579;
+  gap: 12px;
+  padding: 0 18px 18px;
+  color: var(--muted-text);
   font-size: 0.88rem;
 }
 
@@ -121,37 +227,71 @@ button:disabled {
 .legend-swatch {
   width: 16px;
   height: 16px;
-  border: 1px solid #cbd5e1;
+  border: 1px solid var(--control-border);
   border-radius: 4px;
 }
 
-.legend-start {
-  background: #2f9e44;
+.stats-panel {
+  padding: 18px;
 }
 
-.legend-target {
-  background: #d64545;
+.stats-panel dl {
+  display: grid;
+  gap: 12px;
+  margin: 0;
 }
 
-.legend-wall {
-  background: #293241;
+.stats-panel div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--surface-muted);
 }
 
-.legend-weight {
-  background: #f4a261;
+.stats-panel div:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
 }
 
-.legend-visited {
-  background: #8ecae6;
+.stats-panel dt {
+  color: var(--muted-text);
 }
 
-.legend-path {
-  background: #ffd166;
+.stats-panel dd {
+  margin: 0;
+  font-weight: 700;
 }
 
-@media (max-width: 760px) {
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --page-background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(0, 0, 0, 0.08)),
+      #111418;
+    --surface: #1b2027;
+    --surface-muted: #252b34;
+    --text: #f1f5f9;
+    --muted-text: #aeb8c7;
+    --border: #343d49;
+    --control-border: #46515f;
+    --control-hover: #7f8da0;
+    --accent: #75c8c2;
+    --primary: #4b8ed8;
+    --primary-hover: #67a0e2;
+    --panel-shadow: rgba(0, 0, 0, 0.35);
+  }
+}
+
+@media (max-width: 860px) {
+  .app-header,
   .toolbar {
     align-items: stretch;
+  }
+
+  .app-header,
+  .toolbar {
     flex-direction: column;
   }
 
@@ -163,15 +303,25 @@ button:disabled {
   .toolbar-actions button {
     flex: 1;
   }
+
+  .workspace {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 520px) {
   .app-shell {
-    width: calc(100% - 24px);
-    padding: 32px 0;
+    width: min(100% - 20px, 1180px);
+    padding: 18px 0;
   }
 
-  h1 {
-    font-size: 2.3rem;
+  .grid {
+    grid-template-columns: repeat(25, 22px);
+    grid-template-rows: repeat(15, 22px);
+  }
+
+  .grid-cell {
+    width: 22px;
+    height: 22px;
   }
 }
