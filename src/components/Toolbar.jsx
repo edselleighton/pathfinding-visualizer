@@ -21,6 +21,11 @@ export default function Toolbar() {
         </select>
       </label>
 
+      <div className="toolbar-status" aria-label="Visualizer status">
+        <span className="toolbar-status-label">Status</span>
+        <strong>Ready</strong>
+      </div>
+
       <div className="toolbar-actions" aria-label="Grid actions">
         <button type="button" className="primary-button" disabled>
           Run

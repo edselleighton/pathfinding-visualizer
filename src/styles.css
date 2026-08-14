@@ -130,6 +130,25 @@ h2 {
   text-transform: uppercase;
 }
 
+.toolbar-status {
+  display: grid;
+  gap: 6px;
+  min-width: 72px;
+}
+
+.toolbar-status-label {
+  color: var(--muted-text);
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.toolbar-status strong {
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+}
+
 .toolbar-actions {
   display: flex;
   gap: 8px;
