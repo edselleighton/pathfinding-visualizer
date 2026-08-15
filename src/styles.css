@@ -55,6 +55,15 @@ button:hover {
   border-color: var(--control-hover);
 }
 
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.58;
+}
+
+button:disabled:hover {
+  border-color: var(--control-border);
+}
+
 select {
   min-height: 40px;
   border: 1px solid var(--control-border);
@@ -164,6 +173,11 @@ h2 {
 .primary-button:hover {
   border-color: var(--primary-hover);
   background: var(--primary-hover);
+}
+
+.primary-button:disabled:hover {
+  border-color: var(--primary);
+  background: var(--primary);
 }
 
 .workspace {
