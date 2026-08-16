@@ -21,6 +21,15 @@ export default function Toolbar() {
         </select>
       </label>
 
+      <label className="toolbar-field">
+        <span>Tool</span>
+        <select defaultValue="wall" aria-label="Select drawing tool">
+          <option value="wall">Wall</option>
+          <option value="weight">Weight</option>
+          <option value="erase">Erase</option>
+        </select>
+      </label>
+
       <div className="toolbar-status" aria-label="Visualizer status">
         <span className="toolbar-status-label">Status</span>
         <strong>Ready</strong>
