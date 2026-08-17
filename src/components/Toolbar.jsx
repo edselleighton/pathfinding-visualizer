@@ -24,6 +24,8 @@ export default function Toolbar() {
       <label className="toolbar-field">
         <span>Tool</span>
         <select defaultValue="wall" aria-label="Select drawing tool">
+          <option value="start">Start</option>
+          <option value="target">Target</option>
           <option value="wall">Wall</option>
           <option value="weight">Weight</option>
           <option value="erase">Erase</option>
