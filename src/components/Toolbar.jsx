@@ -32,6 +32,15 @@ export default function Toolbar() {
         </select>
       </label>
 
+      <label className="toolbar-field">
+        <span>Maze</span>
+        <select defaultValue="none" aria-label="Select maze pattern">
+          <option value="none">None</option>
+          <option value="random">Random walls</option>
+          <option value="recursive-division">Recursive division</option>
+        </select>
+      </label>
+
       <div className="toolbar-status" aria-label="Visualizer status">
         <span className="toolbar-status-label">Status</span>
         <strong>Ready</strong>
