@@ -195,6 +195,11 @@ h2 {
   box-shadow: 0 16px 40px var(--panel-shadow);
 }
 
+.workspace-placeholder {
+  min-height: 420px;
+  margin-bottom: 16px;
+}
+
 .grid-panel {
   overflow-x: auto;
   padding: 18px;
@@ -346,6 +351,10 @@ h2 {
   .app-shell {
     width: min(100% - 20px, 1180px);
     padding: 18px 0;
+  }
+
+  .workspace-placeholder {
+    min-height: 320px;
   }
 
   .grid {
