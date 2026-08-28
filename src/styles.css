@@ -195,6 +195,10 @@ h2 {
   box-shadow: 0 16px 40px var(--panel-shadow);
 }
 
+.visualizer {
+  min-width: 0;
+}
+
 .workspace-placeholder {
   min-height: 420px;
   margin-bottom: 16px;
