@@ -6,11 +6,18 @@ const TARGET_CELL_INDEX = 7 * GRID_COLUMNS + 19
 const WALL_CELL_INDICES = new Set(
   [3, 4, 5, 6, 8, 9, 10, 11].map((row) => row * GRID_COLUMNS + 12),
 )
+const WEIGHT_CELL_INDICES = new Set([
+  5 * GRID_COLUMNS + 8,
+  6 * GRID_COLUMNS + 8,
+  8 * GRID_COLUMNS + 16,
+  9 * GRID_COLUMNS + 16,
+])
 
 function getCellClassName(index) {
   if (index === START_CELL_INDEX) return 'grid-cell cell-start'
   if (index === TARGET_CELL_INDEX) return 'grid-cell cell-target'
   if (WALL_CELL_INDICES.has(index)) return 'grid-cell cell-wall'
+  if (WEIGHT_CELL_INDICES.has(index)) return 'grid-cell cell-weight'
   return 'grid-cell'
 }
 
