@@ -1,4 +1,4 @@
-export default function Toolbar() {
+export default function Toolbar({ selectedTool, onToolChange }) {
   return (
     <section className="toolbar" aria-label="Visualizer controls">
       <label className="toolbar-field">
@@ -23,7 +23,11 @@ export default function Toolbar() {
 
       <label className="toolbar-field">
         <span>Tool</span>
-        <select defaultValue="wall" aria-label="Select drawing tool">
+        <select
+          value={selectedTool}
+          onChange={(event) => onToolChange(event.target.value)}
+          aria-label="Select drawing tool"
+        >
           <option value="start">Start</option>
           <option value="target">Target</option>
           <option value="wall">Wall</option>
