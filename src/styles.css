@@ -121,6 +121,7 @@ h2 {
 
 .toolbar {
   display: flex;
+  flex-wrap: wrap;
   align-items: end;
   gap: 14px;
   margin-bottom: 16px;
@@ -160,6 +161,7 @@ h2 {
 
 .toolbar-actions {
   display: flex;
+  flex-wrap: wrap;
   gap: 8px;
   margin-left: auto;
 }
@@ -169,6 +171,12 @@ h2 {
   color: var(--on-primary);
   background: var(--primary);
 }
+
+.algorithm-help { flex-basis: 100%; margin: 0; color: var(--muted-text); font-size: 0.85rem; line-height: 1.5; }
+.stats-help { margin: 16px 0 0; color: var(--muted-text); font-size: 0.8rem; line-height: 1.5; }
+.grid-cell:disabled { opacity: 1; cursor: default; }
+.toolbar-field { min-width: 0; }
+.toolbar-field select { max-width: 100%; }
 
 .primary-button:hover {
   border-color: var(--primary-hover);
