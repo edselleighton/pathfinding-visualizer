@@ -1,4 +1,47 @@
 import { GRID_COLUMNS, GRID_ROWS } from './grid'
+import PriorityQueue from './priorityQueue'
+
+export const ALGORITHMS = {
+  bfs: { name: 'Breadth-first search', description: 'Explores in layers and finds the fewest moves. Ignores weights when choosing a route.' },
+  dfs: { name: 'Depth-first search', description: 'Explores one branch deeply before backtracking. Ignores weights and does not guarantee a shortest route.' },
+  dijkstra: { name: 'Dijkstra', description: 'Explores the lowest accumulated cost first. Considers weights and guarantees a minimum-cost route.' },
+  astar: { name: 'A* search', description: 'Combines accumulated cost with Manhattan distance to the target. Considers weights and guarantees a minimum-cost route.' },
+  greedy: { name: 'Greedy best-first search', description: 'Explores the cell closest to the target by Manhattan distance. Ignores accumulated cost and weights; a shortest route is not guaranteed.' },
+}
+
+const entryCost = (board, cell) => board.weights.has(cell) ? 5 : 1
+const distance = (a, b) => Math.abs(Math.floor(a / GRID_COLUMNS) - Math.floor(b / GRID_COLUMNS)) + Math.abs(a % GRID_COLUMNS - b % GRID_COLUMNS)
+
+function success(board, parents, visitedOrder) {
+  const path = reconstructPath(parents, board.targetIndex)
+  return { visitedOrder, path, found: true, cost: path.slice(1).reduce((sum, cell) => sum + entryCost(board, cell), 0) }
+}
+
+function prioritySearch(board, algorithm) {
+  const frontier = new PriorityQueue()
+  const parents = new Map([[board.startIndex, null]])
+  const costs = new Map([[board.startIndex, 0]])
+  const closed = new Set()
+  const visitedOrder = []
+  frontier.push(board.startIndex, 0)
+  while (frontier.size) {
+    const cell = frontier.pop()
+    if (closed.has(cell)) continue
+    closed.add(cell)
+    visitedOrder.push(cell)
+    if (cell === board.targetIndex) return success(board, parents, visitedOrder)
+    for (const next of getNeighbors(cell)) {
+      if (board.walls.has(next) || closed.has(next)) continue
+      const cost = costs.get(cell) + entryCost(board, next)
+      if (algorithm === 'greedy' ? parents.has(next) : cost >= (costs.get(next) ?? Infinity)) continue
+      parents.set(next, cell)
+      costs.set(next, cost)
+      const heuristic = distance(next, board.targetIndex)
+      frontier.push(next, algorithm === 'greedy' ? heuristic : cost + (algorithm === 'astar' ? heuristic : 0))
+    }
+  }
+  return { visitedOrder, path: [], found: false, cost: null }
+}
 
 export function getNeighbors(index) {
   const row = Math.floor(index / GRID_COLUMNS)
@@ -16,19 +59,21 @@ export function reconstructPath(parents, target) {
 }
 
 export function runSearch(board, algorithm = 'bfs') {
-  if (algorithm !== 'bfs') throw new Error(`Unsupported algorithm: ${algorithm}`)
+  if (!Object.hasOwn(ALGORITHMS, algorithm)) throw new Error(`Unsupported algorithm: ${algorithm}`)
+  if (['dijkstra', 'astar', 'greedy'].includes(algorithm)) return prioritySearch(board, algorithm)
   const queue = [board.startIndex]
   const parents = new Map([[board.startIndex, null]])
   const visitedOrder = []
-  for (let head = 0; head < queue.length; head += 1) {
-    const cell = queue[head]
+  let head = 0
+  while (algorithm === 'dfs' ? queue.length > 0 : head < queue.length) {
+    const cell = algorithm === 'dfs' ? queue.pop() : queue[head++]
     visitedOrder.push(cell)
     if (cell === board.targetIndex) {
-      const path = reconstructPath(parents, cell)
-      const cost = path.slice(1).reduce((sum, index) => sum + (board.weights.has(index) ? 5 : 1), 0)
-      return { visitedOrder, path, found: true, cost }
+      return success(board, parents, visitedOrder)
     }
-    for (const next of getNeighbors(cell)) {
+    const neighbors = getNeighbors(cell)
+    // Push in reverse order so the stack processes up/right/down/left.
+    for (const next of algorithm === 'dfs' ? neighbors.reverse() : neighbors) {
       if (!board.walls.has(next) && !parents.has(next)) {
         parents.set(next, cell)
         queue.push(next)

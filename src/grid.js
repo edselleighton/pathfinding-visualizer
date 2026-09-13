@@ -88,3 +88,10 @@ export function applyTool(board, index, tool) {
 
   return board
 }
+
+// A drag stroke sets a fixed terrain state instead of toggling each crossing.
+export function paintCell(board, index, tool, remove = false) {
+  if (tool === 'erase' || remove) return applyTool(board, index, 'erase')
+  if ((tool === 'wall' && board.walls.has(index)) || (tool === 'weight' && board.weights.has(index))) return board
+  return applyTool(board, index, tool)
+}
