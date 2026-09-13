@@ -16,19 +16,20 @@ Branch: `feature/bfs-visualization`. Draft PR targets `main`; merging is a separ
 - [x] 16 Vitest/React Testing Library tests pass; production build passes.
 - [x] Browser smoke test: edit → run → pause → step → resume → result → clear → rerun → reset. No console warnings/errors.
 
-## September 10 — saved backlog, not automatically scheduled
+## September 13–14 — follow-up implemented
 
 Branch: `feature/complete-pathfinding-visualizer`.
-If today's PR is unmerged, branch from it and target it with tomorrow's PR.
-After today's merge, retarget tomorrow's PR to `main`.
+PR #17 merged on September 9. This follow-up branches from the updated `main` and targets `main`.
 
-1. [ ] Dijkstra and A*: reuse the search contract/playback controller; stable priority queue and Manhattan heuristic for A*. Test longer-but-cheaper weighted routes and agreement on minimum cost.
-2. [ ] DFS and greedy best-first search: greedy uses Manhattan distance without accumulated cost. Explain weight handling and optimality guarantees for all algorithms.
-3. [ ] Maze generation: explicit Generate button, random walls at 25% density and recursive division with passages. Replace terrain/results, preserve open endpoints, permit unsolvable boards. Inject randomness for reproducible tests. Disable Generate for None.
-4. [ ] Editing/accessibility: mouse/pen drag painting with a fixed paint/remove mode per stroke; click/tap endpoint placement; one keyboard grid entry point with arrow navigation and Enter/Space editing; visible endpoint/weight symbols. Verify live announcements and narrow layouts.
-5. [ ] Finish README and in-app guide; add GitHub Actions for locked dependency installation, tests and build; add Playwright smoke tests.
-6. [ ] Verify all five algorithms terminate, paths are valid, weighted algorithms minimize cost, maze invariants hold, and keyboard/drag/touch, themes, reduced motion and narrow layouts work.
-7. [ ] Verify fresh install/build and complete user flow without browser errors; publish tomorrow's draft PR with actual validation results.
+1. [x] Dijkstra and A*: shared search/playback contract, stable priority queue and Manhattan heuristic. Weighted-route results verified against an independent relaxation oracle.
+2. [x] DFS and greedy best-first search, with weight handling and optimality explanations for all algorithms.
+3. [x] Explicit Generate action, random walls at 25% density and recursive division. Generation replaces terrain/results and preserves endpoints; randomness is injectable for tests.
+4. [x] Mouse/pen stroke painting, click/tap placement, keyboard navigation, one grid tab stop and visible S/T/5 symbols. Browser checks cover mouse drawing, keyboard bounds and touch.
+5. [x] README, in-app guide, GitHub Actions and Playwright tests.
+6. [x] All algorithms, weighted detours, unreachable boards, maze invariants, playback, keyboard/drag/touch and narrow light/dark layouts verified.
+7. [x] Fresh `npm.cmd ci`, 34 unit/component tests, production build and 5 browser scenarios passed. Browser tests check for console errors.
+
+The local browser suite uses one worker to avoid Windows concurrent-browser launch failures. CI uses two workers. Merging the follow-up draft remains a separate action.
 
 ## Shared behavior and interfaces
 
