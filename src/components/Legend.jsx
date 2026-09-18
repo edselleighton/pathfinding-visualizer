@@ -15,7 +15,7 @@ export default function Legend() {
           <span
             className={`legend-swatch cell-${type}`}
             aria-hidden="true"
-          />
+          >{type === 'start' ? 'S' : type === 'target' ? 'T' : type === 'weight' ? '5' : ''}</span>
           <span>{label}</span>
         </div>
       ))}

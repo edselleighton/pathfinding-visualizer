@@ -40,7 +40,7 @@ describe('BFS', () => {
     expect(runSearch(board)).toEqual(runSearch(board))
   })
   it('rejects unsupported algorithms', () => {
-    expect(() => runSearch(createInitialBoard(), 'dfs')).toThrow('Unsupported algorithm')
+    expect(() => runSearch(createInitialBoard(), 'unknown')).toThrow('Unsupported algorithm')
   })
 })
 
